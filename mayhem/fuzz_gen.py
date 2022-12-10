@@ -32,21 +32,12 @@ error_correction_opts = [qrcode.constants.ERROR_CORRECT_L,
 
 @atheris.instrument_func
 def TestOneInput(data):
-    img = qrcode.make(data)
-
-    # fdp = atheris.FuzzedDataProvider(data)
-    # qr = qrcode.QRCode(
-    #     version=fdp.ConsumeIntInRange(1, 40),
-    #     error_correction=error_correction_opts[fdp.ConsumeIntInRange(0, 3)],
-    #     box_size=fdp.ConsumeIntInRange(1, 100),
-    #     border=fdp.ConsumeIntInRange(0, 100),
-    # )
-    # qr.add_data(fdp.ConsumeBytes(atheris.ALL_REMAINING - 1))
-    # qr.make(fit=fdp.ConsumeBool())
-    #
-    # img = qr.make_image(fill_color="black", back_color="white")
-    # img = qrcode.make(data)
-
+    try:
+        img = qrcode.make(data)
+    except ValueError as e:
+        if 'glog' in str(e):
+            return -1
+        raise
 
 def main():
     atheris.Setup(sys.argv, TestOneInput)

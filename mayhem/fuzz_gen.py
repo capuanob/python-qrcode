@@ -3,7 +3,22 @@ import atheris
 import logging
 import sys
 
-with atheris.instrument_imports():
+with atheris.instrument_imports(include=[
+    'qrcode.constants',
+    'qrcode.exceptions',
+    'qrcode.util',
+    'qrcode.LUT',
+    'qrcode.base',
+    'qrcode.image',
+    'qrcode.image-base',
+    'qrcode.image.styles',
+    'qrcode.image.styles.moduledrawers',
+    'qrcode.image.styles.moduledrawers.pil',
+    'qrcode.compat',
+    'qrcode.compat.util',
+    'qrcode.image.styles.moduledrawers.base',
+    'qrcode.image.pure'
+    ]):
     import qrcode
 
 # No logging

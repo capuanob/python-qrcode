@@ -4,3 +4,4 @@ target: make-fuzz
 cmds:
   - cmd: /src/mayhem/fuzz_gen.py
     libfuzzer: true
+    timeout: 6
